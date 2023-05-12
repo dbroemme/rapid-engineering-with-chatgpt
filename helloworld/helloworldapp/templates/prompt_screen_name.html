@@ -1,0 +1,20 @@
+<!-- prompt_screen_name.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prompt Screen Name</title>
+</head>
+<body>
+    <h1>Enter a Screen Name</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="screen_name" placeholder="Enter your screen name">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

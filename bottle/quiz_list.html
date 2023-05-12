@@ -1,0 +1,15 @@
+<!-- quiz_list.tpl -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz List</title>
+</head>
+<body>
+    <h1>Quiz List</h1>
+    <ul>
+        % for quiz in quizzes:
+            <li>{{ quiz }}</li>
+        % end
+    </ul>
+</body>
+</html>

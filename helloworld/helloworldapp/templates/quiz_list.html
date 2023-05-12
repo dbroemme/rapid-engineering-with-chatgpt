@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .welcome-message {
+            margin-bottom: 20px;
+        }
+        .quiz-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .quiz-list li {
+            margin-bottom: 10px;
+        }
+        .quiz-list a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .quiz-list a:hover {
+            color: #007bff;
+        }
+        .admin-section {
+            margin-top: 20px;
+        }
+        .logout-section {
+            margin-top: 40px;
+        }
+        .logout-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-message">
+        {% if screen_name == "NOT_LOGGED_IN" %}
+            <h3>Welcome, please <a href="{% url 'prompt_screen_name' %}">login</a></h3>
+        {% else %}
+            <h3>Welcome, <span id="screen_name">{{ screen_name }}</span>!</h3>
+        {% endif %}
+    </div>
+
+    <h1>Quiz List</h1>
+    <ul class="quiz-list">
+        {% for quiz in quizzes %}
+            <li>
+                <a href="{% url 'quiz' quiz.id %}">{{ quiz.name }}</a>
+                {% if screen_name == "admin" %}
+                    (<a href="{% url 'view_metrics' quiz.id %}">View Metrics</a>)
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No quizzes found.</li>
+        {% endfor %}
+    </ul>
+
+    {% if screen_name == "admin" %}
+        <div class="admin-section">
+            <h3>Admin</h3>
+            <ul>
+                <li><a href="{% url 'create_quiz' %}">Create New Quiz</a></li>
+            </ul>
+        </div>
+    {% endif %}
+
+    <div class="logout-section">
+        <br/><br/>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</body>
+</html>

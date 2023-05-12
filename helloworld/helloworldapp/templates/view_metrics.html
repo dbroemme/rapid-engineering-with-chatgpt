@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Results</title>
+</head>
+<body>
+    <h1><span id="quiz_name">{{ quiz_name }}</span> Quiz Results by Letter Grade</h1>
+    {% load static %}
+    <img src="{% static plot_file %}" alt="Quiz Results Bar Graph">
+    <p>
+        <a href="{% url 'quiz_list' %}">Return to quiz list</a>
+    </p>
+</body>
+</html>

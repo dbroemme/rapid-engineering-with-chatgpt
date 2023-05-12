@@ -1,0 +1,14 @@
+<!-- quiz_result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Result</title>
+</head>
+<body>
+    <h1>Quiz: {{ quiz.name }}</h1>
+    <h2>Quiz Result</h2>
+    <p>You have completed the quiz.</p>
+    <p>Your Score: {{ correct_answers }} / {{ total_questions }} ({{ score_percentage }}%)</p>
+    <a href="{% url 'quiz' quiz.id %}">Retake Quiz</a>
+</body>
+</html>
